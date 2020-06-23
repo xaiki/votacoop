@@ -1,11 +1,15 @@
 <script>
-	export let name;
+ import {gun} from './gun';
+
+ import Login from './Login.svelte';
+ import Votes from './Votes.svelte';
+
+ let loggedin;
+
+ const user = gun.user()
 </script>
 
-<style>
-	h1 {
-		color: purple;
-	}
-</style>
-
-<h1>Hello {name}!</h1>
+<Login user={user} bind:loggedin/>
+{#if loggedin}
+	<Votes gun={gun}/>
+{/if}
